@@ -21,7 +21,8 @@
     "https://*/*",
     "debugger",
     "webRequest",
-    "*://*.google.com/"
+    "*://*.google.com/",
+    "storage"
   ],
   "options_ui": {
     "page": "options.html",
@@ -40,7 +41,7 @@
       "19": "images/icon-19.png",
       "38": "images/icon-38.png"
     },
-    "default_title": "command runner",
+    "default_title": "Command Finder",
     "default_popup": "popup.html"
   }
 }

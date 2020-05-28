@@ -95,7 +95,7 @@ gulp.task('babel', () => {
 
 gulp.task('clean', del.bind(null, ['.tmp', 'dist']));
 
-gulp.task('watch', gulp.series('lint', 'babel', () => {
+gulp.task('watch', gulp.series('lint', 'babel', (done) => {
   $.livereload.listen();
 
   gulp.watch([
@@ -106,13 +106,15 @@ gulp.task('watch', gulp.series('lint', 'babel', () => {
     'app/_locales/**/*.json'
   ]).on('change', $.livereload.reload);
 
-  gulp.watch('app/scripts.babel/**/*.js', gulp.series('lint', 'babel'), (done) => {
-    done();
+  gulp.watch('app/scripts.babel/**/*.js', gulp.series('lint', 'babel'), (donex) => {
+    donex();
   });
 
-  gulp.watch('bower.json', gulp.series('wiredep', (done) => {
-    done();
+  gulp.watch('bower.json', gulp.series('wiredep', (donex) => {
+    donex();
   }));
+
+  done();
 }));
 
 gulp.task('size', () => {
@@ -130,7 +132,7 @@ gulp.task('wiredep', () => {
 gulp.task('package', function () {
   var manifest = require('./dist/manifest.json');
   return gulp.src('dist/**')
-      .pipe($.zip('command runner-' + manifest.version + '.zip'))
+      .pipe($.zip('command-finder-' + manifest.version + '.zip'))
       .pipe(gulp.dest('package'));
 });
 
